@@ -94,62 +94,62 @@ public class MyList<Type> {
                             currentEl = firstEl.pointer;
                         } else if (j == l - 1) {           //если менять первый с последним
                             list.getEl(l - 1).pointer = list.getEl(1);
-                            Element e = new Element();   //(Type) list.getEl(j).value
-                            e.pointer = (Element) list.getEl(j);
+                            Element e ;
+                            e = (Element) list.getEl(j);
                             list.getEl(j - 1).pointer = list.getEl(i);
-                            e.pointer.pointer = firstEl.pointer;
-                            firstEl = e.pointer;
+                            e.pointer = firstEl.pointer;
+                            firstEl = e;
                             list.getEl(j).pointer = null;
                             currentEl = (Element) list.getEl(j);
                         } else {                             //меняю первый с не последним
-                            Element e = new Element();
-                            e.pointer = (Element) list.getEl(j);
+                            Element e ;
+                            e = (Element) list.getEl(j);
                             list.getEl(j - 1).pointer = list.getEl(i);
-                            Element e2 = new Element();
-                            e2.pointer = e.pointer.pointer;
-                            e.pointer.pointer = firstEl.pointer;
-                            ((Element) list.getEl(i)).pointer = e2.pointer;
-                            firstEl = e.pointer;
+                            Element e2 ;
+                            e2 = e.pointer;
+                            e.pointer = firstEl.pointer;
+                            ((Element) list.getEl(i)).pointer = e2;
+                            firstEl = e;
                         }
                     } else if (j == l - 1) {                  //если меняю последний не с первым
                         if ((i + 1) != j) {
-                            Element e = new Element();
-                            e.pointer = (Element) list.getEl(j);
-                            e.pointer.pointer = (Element) list.getEl(i + 1);
+                            Element e ;
+                            e = (Element) list.getEl(j);
+                            e.pointer = (Element) list.getEl(i + 1);
                             list.getEl(j - 1).pointer = list.getEl(i);
                             list.getEl(i).pointer = null;
-                            ((Element) list.getEl(i - 1)).pointer = e.pointer;
+                            ((Element) list.getEl(i - 1)).pointer = e;
                             currentEl = (Element) list.getEl(l - 1);
                         } else {                                //меняю последний и предпоследний
-                            Element e = new Element();
-                            e.pointer = (Element) list.getEl(j - 1);
+                            Element e ;
+                            e = (Element) list.getEl(j - 1);
                             list.getEl(j - 2).pointer = list.getEl(j);
-                            ((Element) list.getEl(j - 1)).pointer = e.pointer;
-                            e.pointer.pointer = null;
+                            ((Element) list.getEl(j - 1)).pointer = e;
+                            e.pointer = null;
                             currentEl = (Element) list.getEl(l - 1);
 
 
                         }
                     } else {           //меняю не первый и не последний
                         if ((j - i) != 1) {
-                            Element e = new Element();
-                            e.pointer = (Element) list.getEl(i);
-                            Element e1 = new Element();
-                            e1.pointer = (Element) list.getEl(j - 1);
-                            Element e2 = new Element();
-                            e2.pointer = e1.pointer.pointer.pointer;
+                            Element e ;
+                            e = (Element) list.getEl(i);
+                            Element e1 ;
+                            e1 = (Element) list.getEl(j - 1);
+                            Element e2 ;
+                            e2 = e1.pointer.pointer;
                             list.getEl(i - 1).pointer = list.getEl(j);
-                            ((Element) list.getEl(i)).pointer = e.pointer.pointer;
-                            e1.pointer.pointer = e.pointer;
-                            e.pointer.pointer = e2.pointer;
+                            ((Element) list.getEl(i)).pointer = e.pointer;
+                            e1.pointer = e;
+                            e.pointer = e2;
                         } else {
-                            Element e = new Element();
-                            e.pointer = (Element) list.getEl(i);
-                            Element e2 = new Element();
-                            e2.pointer = (Element) list.getEl(i+2);
-                            ((Element)list.getEl(i - 1)).pointer = e.pointer.pointer;
-                            ((Element)list.getEl(i)).pointer=e.pointer;
-                            e.pointer.pointer=e2.pointer;
+                            Element e ;
+                            e = (Element) list.getEl(i);
+                            Element e2 ;
+                            e2 = (Element) list.getEl(i+2);
+                            ((Element)list.getEl(i - 1)).pointer = e.pointer;
+                            ((Element)list.getEl(i)).pointer=e;
+                            e.pointer=e2;
                         }
                     }
                 }
